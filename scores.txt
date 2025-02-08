@@ -1,0 +1,4 @@
+F completed 4-word hangman game in 62 seconds! 1 life(s) were remaining.
+
+J completed 4-word hangman game in 17 seconds! 2 life(s) were remaining.
+
