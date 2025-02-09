@@ -1,19 +1,22 @@
 import tkinter as tk
 import tkinter.messagebox as tmb
 from improvedmain import Hangman
+from PIL import ImageTk, Image
 
 root = tk.Tk()
 root.geometry("500x500")
 root.title("Hangman")
-root.resizable(False, False)
+# root.resizable(False, False)
 
 alphabetList = list("abcdefghijklmnopqrstuvwxyz")
 
 def checkalpha(num) :
-    global obj
-    global alphabetList, blankListLabel, livesLabel, alphaButtonList
+    global obj, lab, img, imageNum
+    global alphabetList, blankListLabel, alphaButtonList
     WholeList = obj.verify(alphabetList[num])[0]
-    livesLabel.config(text=f"Lives: {obj.returnlives()}")
+    currentLives = obj.returnlives()
+    img = ImageTk.PhotoImage(Image.open(f"images/{currentLives}.png").resize((220, 220)))
+    lab.config(image=img)
     for x in range(len(blankListLabel)):
         blankListLabel[x].config(text=WholeList[x])
     if obj.GameOver() != "00": 
@@ -52,7 +55,8 @@ for i in range(len(alphabetList)//2, len(alphabetList)) :
     alphabutton.place(x=10+((i-len(alphabetList)//2)*37), y=400)
     alphaButtonList.append(alphabutton)
     
-livesLabel = tk.Label(root, text="Lives: 6", font="arial 15")
-livesLabel.place(x=215, y=300)
+img = ImageTk.PhotoImage(Image.open(f"images/6.png").resize((220, 220)))
+lab = tk.Label(root, image=img)
+lab.place(x=160, y=10)
 
 root.mainloop()
